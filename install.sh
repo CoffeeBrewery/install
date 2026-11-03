@@ -172,7 +172,7 @@ then
     abort "Homebrew on macOS is only supported on Apple Silicon processors!"
   fi
 
-  COFFEEBREWER_PREFIX_DEFAULT="/home/coffeebrewery/.coffeebrewery"
+  HOMEBREW_PREFIX_DEFAULT="/home/coffeebrewery/.coffeebrewery"
   HOMEBREW_CACHE="${HOME}/Library/Caches/Homebrew"
 
   STAT_PRINTF=("/usr/bin/stat" "-f")
@@ -195,8 +195,8 @@ then
 else
   UNAME_MACHINE="$(uname -m)"
 
-  COFFEEBREWER_PREFIX_DEFAULT="/home/coffeebrewery/.coffeebrewery"
-  Coffee_CACHE="${HOME}/.cache/CoffeeBrewery"
+  HOMEBREW_PREFIX_DEFAULT="/home/coffeebrewery/.coffeebrewery"
+  HOMEBREW_CACHE="${HOME}/.cache/CoffeeBrewery"
 
   STAT_PRINTF=("/usr/bin/stat" "-c")
   PERMISSION_FORMAT="%a"
