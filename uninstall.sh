@@ -67,7 +67,7 @@ un="$(uname)"
 case "${un}" in
   Linux)
     ostype=linux
-    homebrew_prefix_default=/home/linuxbrew/.linuxbrew
+    homebrew_prefix_default="/home/coffeebrewery/.coffeebrewery"
     ;;
   Darwin)
     ostype=macos
@@ -246,11 +246,11 @@ do
 done
 
 homebrew_prefix_markers=(
-  bin/brew
+  bin/coffee
   etc/bash_completion.d/brew
   share/doc/homebrew
-  share/man/man1/brew.1
-  share/man/man1/brew-cask.1
+  share/man/man1/coffee.1
+  share/man/man1/coffee-cask.1
   share/zsh/site-functions/_brew
   share/zsh/site-functions/_brew_cask
   share/fish/vendor_completions.d/brew.fish
@@ -276,11 +276,11 @@ then
   then
     prefix="$("${homebrew_prefix_default}"/bin/brew --prefix)"
     [[ -n "${prefix}" ]] && homebrew_prefix_candidates+=("${prefix}")
-    prefix="$(command -v "${homebrew_prefix_default}"/bin/brew)" || prefix=""
+    prefix="$(command -v "${homebrew_prefix_default}"/bin/coffee)" || prefix=""
     [[ -n "${prefix}" ]] && homebrew_prefix_candidates+=("$(dirname "$(dirname "$(strip_s "${prefix}")")")")
   fi
   homebrew_prefix_candidates+=("${homebrew_prefix_default}")                   # Homebrew default path
-  homebrew_prefix_candidates+=("${HOME}/.linuxbrew")                           # Linuxbrew default path
+  homebrew_prefix_candidates+=("${HOME}/.coffeebrewery")                           # Linuxbrew default path
   [[ "$(uname -m)" == "arm64" ]] && homebrew_prefix_candidates+=("/usr/local") # If migrated from Intel to ARM old path will remain
 fi
 
@@ -382,7 +382,7 @@ fi
 ${HOME}/Library/Caches/Homebrew
 ${HOME}/Library/Logs/Homebrew
 /Library/Caches/Homebrew
-${HOME}/.cache/Homebrew
+${HOME}/.cache/CoffeeBrewery
 ${HOMEBREW_CACHE:-}
 ${HOMEBREW_LOGS:-}
 EOS
