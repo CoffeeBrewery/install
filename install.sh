@@ -40,14 +40,14 @@ then
 fi
 
 # Check for file that prevents Homebrew installation
-if [[ -f "/etc/homebrew/brew.no_install" ]]
+if [[ -f "/etc/coffeebrewery/coffee.no_install" ]]
 then
-  BREW_NO_INSTALL="$(cat "/etc/homebrew/brew.no_install" 2>/dev/null)"
+  BREW_NO_INSTALL="$(cat "/etc/coffeebrewery/coffee.no_install" 2>/dev/null)"
   if [[ -n "${BREW_NO_INSTALL}" ]]
   then
-    abort "Homebrew cannot be installed because ${BREW_NO_INSTALL}."
+    abort "CoffeeBrewery cannot be installed because ${BREW_NO_INSTALL}."
   else
-    abort "Homebrew cannot be installed because /etc/homebrew/brew.no_install exists!"
+    abort "CoffeeBrewery cannot be installed because /etc/coffeebrewery/coffee.no_install exists!"
   fi
 fi
 
@@ -89,7 +89,7 @@ warn() {
 
 usage() {
   cat <<EOS
-Homebrew Installer
+CoffeeBrewery Installer
 Usage: [NONINTERACTIVE=1] [CI=1] install.sh [options]
     -p, --path=PATH  Set the installation prefix (no longer than the default).
     -h, --help       Display this message.
@@ -172,7 +172,7 @@ then
     abort "Homebrew on macOS is only supported on Apple Silicon processors!"
   fi
 
-  HOMEBREW_PREFIX_DEFAULT="/opt/homebrew"
+  COFFEEBREWER_PREFIX_DEFAULT="/home/coffeebrewery/.coffeebrewery"
   HOMEBREW_CACHE="${HOME}/Library/Caches/Homebrew"
 
   STAT_PRINTF=("/usr/bin/stat" "-f")
@@ -195,8 +195,8 @@ then
 else
   UNAME_MACHINE="$(uname -m)"
 
-  HOMEBREW_PREFIX_DEFAULT="/home/linuxbrew/.linuxbrew"
-  HOMEBREW_CACHE="${HOME}/.cache/Homebrew"
+  COFFEEBREWER_PREFIX_DEFAULT="/home/coffeebrewery/.coffeebrewery"
+  Coffee_CACHE="${HOME}/.cache/CoffeeBrewery"
 
   STAT_PRINTF=("/usr/bin/stat" "-c")
   PERMISSION_FORMAT="%a"
@@ -244,8 +244,8 @@ else
 fi
 CHMOD=("/bin/chmod")
 MKDIR=("/bin/mkdir" "-p")
-HOMEBREW_BREW_DEFAULT_GIT_REMOTE="https://github.com/Homebrew/brew"
-HOMEBREW_CORE_DEFAULT_GIT_REMOTE="https://github.com/Homebrew/homebrew-core"
+HOMEBREW_BREW_DEFAULT_GIT_REMOTE="https://github.com/CoffeeBrewery/coffee"
+HOMEBREW_CORE_DEFAULT_GIT_REMOTE="https://github.com/CoffeeBrewery/coffeebrewery-core"
 
 # Use remote URLs of Homebrew repositories from environment if set.
 HOMEBREW_BREW_GIT_REMOTE="${HOMEBREW_BREW_GIT_REMOTE:-"${HOMEBREW_BREW_DEFAULT_GIT_REMOTE}"}"
